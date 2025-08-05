@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Button } from './ui/button'
 
 export default function Header() {
   return (
@@ -10,11 +9,12 @@ export default function Header() {
         </div>
       </div>
       <nav>
-        <Button variant="outline" asChild>
-          <Link href="/login">
-            Investor Login
-          </Link>
-        </Button>
+        <Link 
+          href="/login"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+        >
+          Investor Login
+        </Link>
       </nav>
     </header>
   )
