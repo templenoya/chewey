@@ -25,15 +25,15 @@ export default function EyeTracker() {
 
       // Calculate angles for left eye
       const leftAngle = Math.atan2(e.clientY - leftEyeCenterY, e.clientX - leftEyeCenterX)
-      const leftDistance = Math.min(15, Math.sqrt(
+      const leftDistance = Math.min(10, Math.sqrt(
         Math.pow(e.clientX - leftEyeCenterX, 2) + Math.pow(e.clientY - leftEyeCenterY, 2)
-      ) / 10)
+      ) / 15)
       
       // Calculate angles for right eye
       const rightAngle = Math.atan2(e.clientY - rightEyeCenterY, e.clientX - rightEyeCenterX)
-      const rightDistance = Math.min(15, Math.sqrt(
+      const rightDistance = Math.min(10, Math.sqrt(
         Math.pow(e.clientX - rightEyeCenterX, 2) + Math.pow(e.clientY - rightEyeCenterY, 2)
-      ) / 10)
+      ) / 15)
 
       // Move pupils
       const leftPupil = leftEye.querySelector('.pupil') as HTMLElement
@@ -55,19 +55,25 @@ export default function EyeTracker() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
       {/* Left Eye - Top Left */}
-      <div 
-        ref={leftEyeRef}
-        className="absolute top-20 left-20 w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center opacity-30"
-      >
-        <div className="pupil w-6 h-6 bg-white rounded-full transition-transform duration-100 ease-out"></div>
+      <div className="absolute top-20 left-20 w-20 h-20 bg-gray-700 rounded-full flex items-center justify-center opacity-60">
+        <div 
+          ref={leftEyeRef}
+          className="relative w-12 h-8 border-2 border-white rounded-full flex items-center justify-center overflow-hidden"
+          style={{ borderRadius: '50px' }}
+        >
+          <div className="pupil w-4 h-4 bg-gray-800 rounded-full transition-transform duration-100 ease-out"></div>
+        </div>
       </div>
       
       {/* Right Eye - Top Right */}
-      <div 
-        ref={rightEyeRef}
-        className="absolute top-20 right-20 w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center opacity-30"
-      >
-        <div className="pupil w-6 h-6 bg-white rounded-full transition-transform duration-100 ease-out"></div>
+      <div className="absolute top-20 right-20 w-20 h-20 bg-gray-700 rounded-full flex items-center justify-center opacity-60">
+        <div 
+          ref={rightEyeRef}
+          className="relative w-12 h-8 border-2 border-white rounded-full flex items-center justify-center overflow-hidden"
+          style={{ borderRadius: '50px' }}
+        >
+          <div className="pupil w-4 h-4 bg-gray-800 rounded-full transition-transform duration-100 ease-out"></div>
+        </div>
       </div>
     </div>
   )
