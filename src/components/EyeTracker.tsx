@@ -53,23 +53,21 @@ export default function EyeTracker() {
   }, [])
 
   return (
-    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 opacity-20">
-      <div className="flex items-center space-x-8">
-        {/* Left Eye */}
-        <div 
-          ref={leftEyeRef}
-          className="relative w-32 h-32 bg-white rounded-full border-4 border-gray-300 flex items-center justify-center"
-        >
-          <div className="pupil w-12 h-12 bg-black rounded-full transition-transform duration-75 ease-out"></div>
-        </div>
-        
-        {/* Right Eye */}
-        <div 
-          ref={rightEyeRef}
-          className="relative w-32 h-32 bg-white rounded-full border-4 border-gray-300 flex items-center justify-center"
-        >
-          <div className="pupil w-12 h-12 bg-black rounded-full transition-transform duration-75 ease-out"></div>
-        </div>
+    <div className="fixed inset-0 pointer-events-none z-0">
+      {/* Left Eye - Top Left */}
+      <div 
+        ref={leftEyeRef}
+        className="absolute top-20 left-20 w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center opacity-30"
+      >
+        <div className="pupil w-6 h-6 bg-white rounded-full transition-transform duration-100 ease-out"></div>
+      </div>
+      
+      {/* Right Eye - Top Right */}
+      <div 
+        ref={rightEyeRef}
+        className="absolute top-20 right-20 w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center opacity-30"
+      >
+        <div className="pupil w-6 h-6 bg-white rounded-full transition-transform duration-100 ease-out"></div>
       </div>
     </div>
   )

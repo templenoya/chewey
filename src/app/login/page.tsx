@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import EyeTracker from '@/components/EyeTracker'
 import PasswordInput from '@/components/PasswordInput'
 import { useRouter } from 'next/navigation'
@@ -35,51 +34,41 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex items-center justify-center px-8 relative overflow-hidden">
       {/* Eye Tracker Component */}
       <EyeTracker />
       
       {/* Login Form */}
-      <div className="w-full max-w-md relative z-10">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-normal text-black mb-4">
-            INVESTOR LOGIN
+      <div className="w-full max-w-sm relative z-10">
+        <div className="text-center mb-16">
+          <h1 className="text-2xl font-light text-white mb-8 tracking-widest">
+            ACCESS
           </h1>
-          <div className="w-32 h-px bg-black mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 font-light">
-            Highland Capital Partners
-          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-black mb-2">
-              Username
-            </label>
             <input
               id="username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-black"
-              placeholder="Enter username"
+              className="w-full px-0 py-4 bg-transparent border-0 border-b border-gray-600 focus:outline-none focus:border-white text-white placeholder-gray-500 text-center"
+              placeholder="·"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-black mb-2">
-              Password
-            </label>
             <PasswordInput
               value={password}
               onChange={setPassword}
-              placeholder="Enter password"
+              placeholder="·"
             />
           </div>
 
           {error && (
-            <div className="text-red-600 text-sm text-center bg-red-50 p-3 rounded-md">
+            <div className="text-red-400 text-xs text-center opacity-75">
               {error}
             </div>
           )}
@@ -87,20 +76,11 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-black text-white py-3 px-4 rounded-md hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            className="w-full bg-transparent border border-gray-600 text-white py-3 px-4 hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed font-light text-sm tracking-wider"
           >
-            {isLoading ? 'Authenticating...' : 'Login'}
+            {isLoading ? '···' : 'ENTER'}
           </button>
         </form>
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/"
-            className="text-gray-600 hover:text-black transition-colors text-sm"
-          >
-            ← Back to Home
-          </Link>
-        </div>
       </div>
     </div>
   )
