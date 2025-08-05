@@ -1,16 +1,23 @@
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-700">
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="relative z-10 text-center text-white px-6 max-w-4xl">
-        <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
-          36 years of putting the
-          <br />
-          <span className="text-blue-400">Entrepreneur first</span>
+    <section className="min-h-screen bg-white flex flex-col items-center justify-center px-8">
+      <div className="text-center max-w-6xl">
+        <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-serif font-normal text-black mb-8 tracking-wide">
+          HIGHLAND
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300">
-          Highland Capital Partners
+        <div className="w-full h-px bg-black mb-16"></div>
+        <p className="text-lg md:text-xl text-black mb-8 font-light">
+          36 years of putting the Entrepreneur first
         </p>
+        <div className="text-base md:text-lg text-black font-light">
+          <span>200 Exits</span>
+          <span className="mx-4">|</span>
+          <span>50+ IPOs</span>
+          <span className="mx-4">|</span>
+          <span>40 Unicorns</span>
+          <span className="mx-4">|</span>
+          <span>$7B AUM</span>
+        </div>
       </div>
     </section>
   )

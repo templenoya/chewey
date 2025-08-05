@@ -1,21 +1,9 @@
-import Link from 'next/link'
-
 export default function Header() {
   return (
-    <header className="flex items-center justify-between p-6 bg-white">
-      <div className="flex items-center">
-        <div className="text-2xl font-bold text-gray-800">
-          Highland Capital Partners
-        </div>
+    <header className="absolute top-0 right-0 p-8 z-10">
+      <div className="border border-black px-4 py-2 text-sm font-medium bg-white hover:bg-gray-50 transition-colors cursor-pointer">
+        Investor Login
       </div>
-      <nav>
-        <Link 
-          href="/login"
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
-        >
-          Investor Login
-        </Link>
-      </nav>
     </header>
   )
 }
