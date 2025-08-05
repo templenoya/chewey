@@ -3,48 +3,30 @@
 import { useEffect, useRef } from 'react'
 
 export default function EyeTracker() {
-  const leftEyeRef = useRef<HTMLDivElement>(null)
-  const rightEyeRef = useRef<HTMLDivElement>(null)
+  const eyeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const leftEye = leftEyeRef.current
-      const rightEye = rightEyeRef.current
+      const eye = eyeRef.current
       
-      if (!leftEye || !rightEye) return
+      if (!eye) return
 
-      // Calculate eye positions
-      const leftEyeRect = leftEye.getBoundingClientRect()
-      const rightEyeRect = rightEye.getBoundingClientRect()
-      
-      const leftEyeCenterX = leftEyeRect.left + leftEyeRect.width / 2
-      const leftEyeCenterY = leftEyeRect.top + leftEyeRect.height / 2
-      
-      const rightEyeCenterX = rightEyeRect.left + rightEyeRect.width / 2
-      const rightEyeCenterY = rightEyeRect.top + rightEyeRect.height / 2
+      // Calculate eye position
+      const eyeRect = eye.getBoundingClientRect()
+      const eyeCenterX = eyeRect.left + eyeRect.width / 2
+      const eyeCenterY = eyeRect.top + eyeRect.height / 2
 
-      // Calculate angles for left eye
-      const leftAngle = Math.atan2(e.clientY - leftEyeCenterY, e.clientX - leftEyeCenterX)
-      const leftDistance = Math.min(10, Math.sqrt(
-        Math.pow(e.clientX - leftEyeCenterX, 2) + Math.pow(e.clientY - leftEyeCenterY, 2)
-      ) / 15)
-      
-      // Calculate angles for right eye
-      const rightAngle = Math.atan2(e.clientY - rightEyeCenterY, e.clientX - rightEyeCenterX)
-      const rightDistance = Math.min(10, Math.sqrt(
-        Math.pow(e.clientX - rightEyeCenterX, 2) + Math.pow(e.clientY - rightEyeCenterY, 2)
-      ) / 15)
+      // Calculate angle and distance
+      const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX)
+      const distance = Math.min(8, Math.sqrt(
+        Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2)
+      ) / 20)
 
-      // Move pupils
-      const leftPupil = leftEye.querySelector('.pupil') as HTMLElement
-      const rightPupil = rightEye.querySelector('.pupil') as HTMLElement
+      // Move pupil
+      const pupil = eye.querySelector('.pupil') as HTMLElement
       
-      if (leftPupil) {
-        leftPupil.style.transform = `translate(${Math.cos(leftAngle) * leftDistance}px, ${Math.sin(leftAngle) * leftDistance}px)`
-      }
-      
-      if (rightPupil) {
-        rightPupil.style.transform = `translate(${Math.cos(rightAngle) * rightDistance}px, ${Math.sin(rightAngle) * rightDistance}px)`
+      if (pupil) {
+        pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`
       }
     }
 
@@ -53,26 +35,16 @@ export default function EyeTracker() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {/* Left Eye - Top Left */}
-      <div className="absolute top-20 left-20 w-20 h-20 bg-gray-700 rounded-full flex items-center justify-center opacity-60">
-        <div 
-          ref={leftEyeRef}
-          className="relative w-12 h-8 border-2 border-white rounded-full flex items-center justify-center overflow-hidden"
-          style={{ borderRadius: '50px' }}
-        >
-          <div className="pupil w-4 h-4 bg-gray-800 rounded-full transition-transform duration-100 ease-out"></div>
-        </div>
-      </div>
-      
-      {/* Right Eye - Top Right */}
-      <div className="absolute top-20 right-20 w-20 h-20 bg-gray-700 rounded-full flex items-center justify-center opacity-60">
-        <div 
-          ref={rightEyeRef}
-          className="relative w-12 h-8 border-2 border-white rounded-full flex items-center justify-center overflow-hidden"
-          style={{ borderRadius: '50px' }}
-        >
-          <div className="pupil w-4 h-4 bg-gray-800 rounded-full transition-transform duration-100 ease-out"></div>
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
+      {/* Single Centered Eye */}
+      <div className="w-32 h-32 bg-gray-700 rounded-full flex items-center justify-center opacity-40">
+        <div className="relative w-20 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
+          <div 
+            ref={eyeRef}
+            className="relative w-full h-full flex items-center justify-center"
+          >
+            <div className="pupil w-6 h-6 bg-gray-900 rounded-full transition-transform duration-75 ease-out"></div>
+          </div>
         </div>
       </div>
     </div>
